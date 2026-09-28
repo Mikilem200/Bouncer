@@ -1,7 +1,7 @@
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
-
+/*
 public class EX1 : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,9 +41,9 @@ public class EX1 : MonoBehaviour
         {
             using (StreamWriter writer = new StreamWriter(filestream))
             {
-                writer.WriteLine("Archivo de Guardado 1, featuring Dante from the Devil May Cry series");
+                writer.WriteLine("");
             }
         }
     }
 
-}
+}*/

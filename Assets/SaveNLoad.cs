@@ -1,16 +1,21 @@
 using UnityEngine;
-using System.Collections.Generic;
-/*
-// This attribute is required!
-[System.Serializable]
 
-public class SaveNLoad
+public class SaveNLoad : MonoBehaviour
 {
-    public int bounces;
-
-    public GameData()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        bounces = Getbounces();
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnClick()
+    {
+        
     }
 }
-*/
