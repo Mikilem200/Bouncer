@@ -13,6 +13,7 @@ public class ScriptBola : MonoBehaviour
     private int rebotes = 0;
     private string rutaArchivoJson;
     private string rutaArchivoXML;
+    string rutaArchivoCSV;
     public TMP_Text textoRebotes;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,6 +21,7 @@ public class ScriptBola : MonoBehaviour
     {
         rutaArchivoJson = Application.dataPath + "/rebotes.json";
         rutaArchivoXML = Application.dataPath + "/rebotes.XML";
+        rutaArchivoCSV = Application.dataPath + "/rebotes.CSV";
 
     }
 

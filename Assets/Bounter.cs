@@ -1,8 +1,10 @@
+using System.IO;
+using System.Xml;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using TMPro;
-using System.Xml;
-using System.IO;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 [System.Serializable]
 public class GameData
 {
@@ -13,11 +15,13 @@ public class Bounter : MonoBehaviour
 {
     private int bounces = 0;
     private string pathXML;
+    string pathCSV;
     public TMP_Text textoRebs;
 
     void Start()
     {
         pathXML = Application.dataPath + "/rebotes.XML";
+        pathCSV = Application.dataPath + "/rebotes.csv";
     }
 
     [HideInInspector] public UnityEvent onBouncedOffGround = new UnityEvent();
@@ -64,8 +68,46 @@ public class Bounter : MonoBehaviour
             }
         }
 
-
     }
+
+    public void GuardCSV()
+    {
+        StreamWriter writer = new StreamWriter(pathCSV);
+
+        writer.WriteLine(bounces.ToString());
+        writer.Flush();
+        writer.Close();
+        Debug.Log("Saved to " + pathCSV);
+    }
+
+    public static List<string[]> Read(string pathCSV)
+    {
+        var result = new List<string[]>();
+        foreach (var line in File.ReadAllLines(pathCSV))
+        {
+            result.Add(line.Split(','));
+        }
+        return result;
+    }
+
+    public void loadCSV()
+    {
+        List<string[]> strings = Read(pathCSV);
+        foreach(string[] s in strings)
+        {
+            Debug.Log("Valores");
+            foreach (string a in s)
+            {
+                Debug.Log(a);
+
+                bounces = int.Parse(content.InnerText);
+                textoRebs.text = "Bounces = " + Getbounces();
+
+            }
+        }
+    }
+    
+
 
 }
 
