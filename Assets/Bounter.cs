@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 [System.Serializable]
 public class GameData
 {
@@ -14,13 +13,13 @@ public class GameData
 public class Bounter : MonoBehaviour
 {
     private int bounces = 0;
-    private string pathXML;
+    //private string pathXML;
     string pathCSV;
     public TMP_Text textoRebs;
 
     void Start()
     {
-        pathXML = Application.dataPath + "/rebotes.XML";
+        //pathXML = Application.dataPath + "/rebotes.XML";
         pathCSV = Application.dataPath + "/rebotes.csv";
     }
 
@@ -32,6 +31,7 @@ public class Bounter : MonoBehaviour
         onBouncedOffGround.Invoke();
     }
     public int Getbounces() { return bounces; }
+    /*
     public void SavBouncXML()
     {
         //crea XML
@@ -50,7 +50,7 @@ public class Bounter : MonoBehaviour
         //guarda XML
         savXML.Save(pathXML);
     }
-
+    
     public void LoadBouncXML()
     {
         XmlDocument savXML = new XmlDocument();
@@ -68,7 +68,7 @@ public class Bounter : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
     public void GuardCSV()
     {
@@ -92,21 +92,24 @@ public class Bounter : MonoBehaviour
 
     public void loadCSV()
     {
-        List<string[]> strings = Read(pathCSV);
-        foreach(string[] s in strings)
+        if (File.Exists(pathCSV))
         {
-            Debug.Log("Valores");
-            foreach (string a in s)
+            List<string[]> strings = Read(pathCSV);
+
+            foreach (string[] s in strings)
             {
-                Debug.Log(a);
-
-                bounces = int.Parse(content.InnerText);
-                textoRebs.text = "Bounces = " + Getbounces();
-
+                foreach (string a in s)
+                {
+                    if (int.TryParse(a, out int valor))
+                    {
+                        bounces = valor;
+                        textoRebs.text = "" + Getbounces();
+                    }
+                }
             }
         }
     }
-    
+
 
 
 }
