@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 [System.Serializable]
 public class GameData
 {
@@ -14,17 +15,19 @@ public class Bounter : MonoBehaviour
 {
     private int bounces = 0;
     //private string pathXML;
-    string pathCSV;
+    //string pathCSV;
+    string pathBIN;
     public TMP_Text textoRebs;
 
     void Start()
     {
         //pathXML = Application.dataPath + "/rebotes.XML";
-        pathCSV = Application.dataPath + "/rebotes.csv";
+        //pathCSV = Application.dataPath + "/rebotes.csv";
+        pathBIN = Application.dataPath + "/rebotes.txt";
     }
 
     [HideInInspector] public UnityEvent onBouncedOffGround = new UnityEvent();
-    
+
     void OnCollisionEnter(Collision collision)
     {
         bounces++;
@@ -70,6 +73,7 @@ public class Bounter : MonoBehaviour
 
     }*/
 
+    /* CSV
     public void GuardCSV()
     {
         StreamWriter writer = new StreamWriter(pathCSV);
@@ -108,11 +112,34 @@ public class Bounter : MonoBehaviour
                 }
             }
         }
+    }*/
+
+    /*Binari*/
+    public void GuarBin()
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(pathBIN, FileMode.Create);
+
+        formatter.Serialize(stream, bounces);
+        stream.Close();
     }
 
+    public void LoadBin()
+    {
+        if (File.Exists(pathBIN))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(pathBIN, FileMode.Open);
+            formatter.Deserialize(stream);
+        }
+        else
+        {
+            Debug.Log ("Nuh uh dawg, at " + pathBIN);
+        }
 
-
+    }
 }
+
 
 
 

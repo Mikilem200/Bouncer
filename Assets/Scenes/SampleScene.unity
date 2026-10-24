@@ -605,7 +605,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1044607501}
         m_TargetAssemblyTypeName: Bounter, Assembly-CSharp
-        m_MethodName: loadCSV
+        m_MethodName: LoadBin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1287,7 +1287,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1044607501}
         m_TargetAssemblyTypeName: Bounter, Assembly-CSharp
-        m_MethodName: GuardCSV
+        m_MethodName: GuarBin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
