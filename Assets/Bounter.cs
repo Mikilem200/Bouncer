@@ -23,7 +23,7 @@ public class Bounter : MonoBehaviour
     {
         //pathXML = Application.dataPath + "/rebotes.XML";
         //pathCSV = Application.dataPath + "/rebotes.csv";
-        pathBIN = Application.dataPath + "/rebotes.txt";
+        pathBIN = Application.dataPath + "/rebotes.dat";
     }
 
     [HideInInspector] public UnityEvent onBouncedOffGround = new UnityEvent();
@@ -130,15 +130,18 @@ public class Bounter : MonoBehaviour
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(pathBIN, FileMode.Open);
-            formatter.Deserialize(stream);
+
+            bounces = (int)formatter.Deserialize(stream);
+            textoRebs.text = "" + Getbounces();
+            stream.Close();
         }
         else
         {
-            Debug.Log ("Nuh uh dawg, at " + pathBIN);
+            Debug.Log("Nuh uh dawg, at " + pathBIN);
         }
-
     }
 }
+
 
 
 
